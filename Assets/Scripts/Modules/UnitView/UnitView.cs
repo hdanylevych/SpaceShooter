@@ -20,6 +20,12 @@ public class UnitView : MonoBehaviour
 
     private void Update()
     {
-        transform.position = _model.Position;
+        if (Model.IsDead == true)
+        {
+            _model = null;
+            // return view to the pool
+        }
+
+        transform.position = Model.Position;
     }
 }

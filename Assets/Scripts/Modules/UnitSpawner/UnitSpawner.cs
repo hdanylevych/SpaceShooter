@@ -73,7 +73,7 @@ public class UnitSpawner
         for (int i = 0; i < armySize; i++)
         {
             var model = new UnitModel(_defaultEnemyConfiguration);
-            var enemyViewGameObject = GameObject.Instantiate(_enemyViewPrefab);
+            var enemyViewGameObject = GameObject.Instantiate(_enemyViewPrefab); // EnemyUnitPool.GetEnemy()
             
             model.Position.y = Random.Range(-5, 5);
             model.Position.x = Random.Range(10, 12);

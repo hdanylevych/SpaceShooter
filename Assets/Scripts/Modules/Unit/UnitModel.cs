@@ -13,6 +13,7 @@ public class UnitModel
     public float AttackSpeed => _configuration.AttackSpeed;
     public Sprite Skin => _configuration.Skin;
 
+
     public UnitModel(UnitConfiguration config)
     {
         _configuration = config;
