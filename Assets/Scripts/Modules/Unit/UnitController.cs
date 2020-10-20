@@ -22,6 +22,9 @@ public class UnitController
         }
 
         CheckModelOnBecameInvisable();
+
+        if (_army.Count == 0)
+            _army = UnitSpawner.Instance.CreateArmy(30, false);
     }
 
     private void CheckModelOnBecameInvisable()
