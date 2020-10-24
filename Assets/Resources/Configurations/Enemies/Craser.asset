@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af98b9455d53bd24eacd72e5cd78b735, type: 3}
-  m_Name: Base
+  m_Name: Craser
   m_EditorClassIdentifier: 
-  Id: 0
-  SkinId: 1
-  Name: Player
-  Hp: 100
-  MovementSpeed: 5
-  AttackDamage: 1
-  AttackSpeed: 3
-  Skin: {fileID: 21300000, guid: 8953f9ee47ac54916acfbc443f6b3c36, type: 3}
+  Id: 2
+  SkinId: 3
+  Name: Craser
+  Hp: 5000
+  MovementSpeed: 2
+  AttackDamage: 1000
+  AttackSpeed: 20
+  Skin: {fileID: 0}

@@ -40,6 +40,4 @@ public class UnitExhaustView : MonoBehaviour
 
         _previousPosition = _model.Position;
     }
-
-
 }

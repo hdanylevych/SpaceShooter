@@ -11,8 +11,7 @@ public class UnitModel
     public bool IsDead => _configuration.Hp <= 0;
     public long AttackDamage => _configuration.AttackDamage;
     public float AttackSpeed => _configuration.AttackSpeed;
-    public Sprite Skin => _configuration.Skin;
-
+    public int SkinId => _configuration.SkinId;
 
     public UnitModel(UnitConfiguration config)
     {

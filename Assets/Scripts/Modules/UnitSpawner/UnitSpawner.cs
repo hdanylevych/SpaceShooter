@@ -5,19 +5,19 @@ public class UnitSpawner
 {
     private static UnitSpawner instance;
 
-    private const string EnemyViewGameObjectPath = "View/EnemyView";
+    private const string UnitViewGameObjectPath = "View/UnitView";
     private const string EnemyConfigurationObjectPath = "Configurations/Enemies/";
-    private const string PlayerViewGameObjectPath = "View/PlayerView";
     private const string PlayerConfigurationObjectPath = "Configurations/Player/";
+    private const string UnitsAnimationReferencesPath = "Configurations/UnitsAnimationReferences/UnitsAnimationReferences";
 
-    private GameObject _enemyViewPrefab;
-    private GameObject _playerViewPrefab;
-    
+    private GameObject _unitViewPrefab;
+
     private GameObject _playersViewParent = new GameObject("Player's View");
-    private GameObject _enemysViewParent = new GameObject("Enemy's View");
+    private GameObject _enemyViewParent = new GameObject("Enemy's View");
     
     private UnitConfiguration _defaultEnemyConfiguration;
     private UnitConfiguration _defaultPlayerConfiguration;
+    private UnitsAnimationReferences _unitsAnimationReferences;
 
     public static UnitSpawner Instance
     {
@@ -32,11 +32,11 @@ public class UnitSpawner
 
     private UnitSpawner()
     {
-        _playerViewPrefab = Resources.Load<GameObject>(PlayerViewGameObjectPath);
-        _enemyViewPrefab = Resources.Load<GameObject>(EnemyViewGameObjectPath);
+        _unitViewPrefab = Resources.Load<GameObject>(UnitViewGameObjectPath);
 
         _defaultEnemyConfiguration = Resources.Load<UnitConfiguration>(EnemyConfigurationObjectPath + "Default");
         _defaultPlayerConfiguration = Resources.Load<UnitConfiguration>(PlayerConfigurationObjectPath + "Base");
+        _unitsAnimationReferences = Resources.Load<UnitsAnimationReferences>(UnitsAnimationReferencesPath);
     }
 
     public List<UnitModel> CreateArmy(int armySize, bool isPlayer)
@@ -58,10 +58,20 @@ public class UnitSpawner
     private void CreatePlayerArmy(int armySize, List<UnitModel> army)
     {
         // PlayerView init
-        var playerViewInstance = GameObject.Instantiate(_playerViewPrefab);
+        var playerViewInstance = GameObject.Instantiate(_unitViewPrefab);
         var playerView = playerViewInstance.GetComponent<UnitView>();
 
         var unitModel = new UnitModel(_defaultPlayerConfiguration);
+        
+        foreach (var animationReference in _unitsAnimationReferences.animationReferences)
+        {
+            if (animationReference.SkinId == unitModel.SkinId)
+            {
+                GameObject.Instantiate(animationReference.Animation, playerViewInstance.transform);
+                break;
+            }
+        }
+
         playerView.Initialize(unitModel);
 
         army.Add(unitModel);
@@ -73,14 +83,23 @@ public class UnitSpawner
         for (int i = 0; i < armySize; i++)
         {
             var model = new UnitModel(_defaultEnemyConfiguration);
-            var enemyViewGameObject = GameObject.Instantiate(_enemyViewPrefab); // EnemyUnitPool.GetEnemy()
+            var enemyViewGameObject = GameObject.Instantiate(_unitViewPrefab); // EnemyUnitPool.GetEnemy()
             
             model.Position.y = Random.Range(-5, 5);
             model.Position.x = Random.Range(10, 12);
 
-            enemyViewGameObject.transform.parent = _enemysViewParent.transform;
+            enemyViewGameObject.transform.parent = _enemyViewParent.transform;
             enemyViewGameObject.GetComponent<UnitView>().Initialize(model);
             
+            foreach (var animationReference in _unitsAnimationReferences.animationReferences)
+            {
+                if (animationReference.SkinId == model.SkinId)
+                {
+                    GameObject.Instantiate(animationReference.Animation, enemyViewGameObject.transform);
+                    break;
+                }
+            }
+
             army.Add(model);
         }
     }

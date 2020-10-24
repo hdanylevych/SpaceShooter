@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af98b9455d53bd24eacd72e5cd78b735, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  Skin: {fileID: 21300000, guid: 92b6e50ae89884e3ba80001155f62bea, type: 3}
   Id: 1
+  SkinId: 4
   Name: Default
   Hp: 5
   MovementSpeed: 5
   AttackDamage: 1
   AttackSpeed: 1
+  Skin: {fileID: 21300000, guid: 92b6e50ae89884e3ba80001155f62bea, type: 3}

@@ -15,7 +15,7 @@ public class UnitView : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = _model.Skin;
+        //GetComponent<SpriteRenderer>().sprite = _model.Skin;
     }
 
     private void Update()

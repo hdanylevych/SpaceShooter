@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe341383a1b8564d8bdb64f2f64f26b, type: 3}
+  m_Name: UnitsAnimationReferences
+  m_EditorClassIdentifier: 
+  animationReferences:
+  - SkinId: 0
+    Animation: {fileID: 0}
+  - SkinId: 1
+    Animation: {fileID: 7837988620350496942, guid: 8c6f297100ba09b4db3460e2863f6f15, type: 3}
+  - SkinId: 2
+    Animation: {fileID: 2542235933686171805, guid: 566dedf269d92974f8a2066829bcbca8, type: 3}
+  - SkinId: 3
+    Animation: {fileID: 1009964689335648872, guid: 5d78b64c947a28d47a0c1a4d6667ac12, type: 3}
+  - SkinId: 4
+    Animation: {fileID: 7725787303101946238, guid: d00e65daf75c667449dcb6ee043e7c73, type: 3}
