@@ -13,11 +13,6 @@ public class UnitView : MonoBehaviour
         _model = unitModel;
     }
 
-    private void Start()
-    {
-        //GetComponent<SpriteRenderer>().sprite = _model.Skin;
-    }
-
     private void Update()
     {
         if (Model.IsDead == true)

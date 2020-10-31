@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/GameControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Input System/GameControls.inputactions'
 
 using System;
 using System.Collections;
@@ -30,6 +30,14 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""name"": ""Down"",
                     ""type"": ""Button"",
                     ""id"": ""b17c6f8e-52c8-41c6-97b0-a96ae09d1ee8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""1708ba86-956b-49fd-9b30-727fa5240ff1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -79,6 +87,28 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1756a542-a58c-42b8-bf5c-f61ecf731b8c"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3bddf24-3db0-4b9f-a130-9861e0dbe84b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -89,6 +119,7 @@ public class @GameControls : IInputActionCollection, IDisposable
         m_PlayerShip = asset.FindActionMap("PlayerShip", throwIfNotFound: true);
         m_PlayerShip_Up = m_PlayerShip.FindAction("Up", throwIfNotFound: true);
         m_PlayerShip_Down = m_PlayerShip.FindAction("Down", throwIfNotFound: true);
+        m_PlayerShip_Fire = m_PlayerShip.FindAction("Fire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -140,12 +171,14 @@ public class @GameControls : IInputActionCollection, IDisposable
     private IPlayerShipActions m_PlayerShipActionsCallbackInterface;
     private readonly InputAction m_PlayerShip_Up;
     private readonly InputAction m_PlayerShip_Down;
+    private readonly InputAction m_PlayerShip_Fire;
     public struct PlayerShipActions
     {
         private @GameControls m_Wrapper;
         public PlayerShipActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Up => m_Wrapper.m_PlayerShip_Up;
         public InputAction @Down => m_Wrapper.m_PlayerShip_Down;
+        public InputAction @Fire => m_Wrapper.m_PlayerShip_Fire;
         public InputActionMap Get() { return m_Wrapper.m_PlayerShip; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -161,6 +194,9 @@ public class @GameControls : IInputActionCollection, IDisposable
                 @Down.started -= m_Wrapper.m_PlayerShipActionsCallbackInterface.OnDown;
                 @Down.performed -= m_Wrapper.m_PlayerShipActionsCallbackInterface.OnDown;
                 @Down.canceled -= m_Wrapper.m_PlayerShipActionsCallbackInterface.OnDown;
+                @Fire.started -= m_Wrapper.m_PlayerShipActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_PlayerShipActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_PlayerShipActionsCallbackInterface.OnFire;
             }
             m_Wrapper.m_PlayerShipActionsCallbackInterface = instance;
             if (instance != null)
@@ -171,6 +207,9 @@ public class @GameControls : IInputActionCollection, IDisposable
                 @Down.started += instance.OnDown;
                 @Down.performed += instance.OnDown;
                 @Down.canceled += instance.OnDown;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
         }
     }
@@ -179,5 +218,6 @@ public class @GameControls : IInputActionCollection, IDisposable
     {
         void OnUp(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
     }
 }
