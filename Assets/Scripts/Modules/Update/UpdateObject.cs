@@ -13,8 +13,8 @@ public class UpdateObject : MonoBehaviour
         _playerArmy = UnitSpawner.Instance.CreateArmy(1, true);
         _enemyArmy = UnitSpawner.Instance.CreateArmy(13, false);
         
-        _playerController = new UnitController(new PlayerMovementController(), _playerArmy);
-        _enemyController = new UnitController(new AIMovementController(), _enemyArmy);
+        _playerController = new UnitController(new PlayerMovementController(), new PlayerShootingController(), _playerArmy);
+        _enemyController = new UnitController(new AIMovementController(), new AIShootingController(), _enemyArmy);
     }
 
     void Update()

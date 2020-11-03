@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class UnitController
 {
+    private GameControls _playerControls;
     private List<UnitModel> _army;
     private IMovementController _movementController;
-    private GameControls _playerControls;
+    private IShootingController _shootingController;
 
-    public UnitController(IMovementController movementController, List<UnitModel> army)
+    public UnitController(IMovementController movementController, IShootingController shootingController, List<UnitModel> army)
     {
         _army = army;
         _movementController = movementController;
+        _shootingController = shootingController;
 
         _playerControls = new GameControls();
         _playerControls.Enable();
@@ -23,25 +25,13 @@ public class UnitController
         foreach (var unitModel in _army)
         {
             _movementController.Update(unitModel);
-            UpdateAttack(unitModel);
+            _shootingController.Update(unitModel);
         }
 
         CheckModelOnBecameInvisable();
 
         if (_army.Count == 0)
             _army = UnitSpawner.Instance.CreateArmy(30, false);
-    }
-
-    private void UpdateAttack(UnitModel model)
-    {
-        if (_playerControls.PlayerShip.Fire.ReadValue<float>() > 0f)
-        {
-            var projectilePrefab = Resources.Load<GameObject>("Projectiles/Projectile");
-            var projectileObject = GameObject.Instantiate(projectilePrefab);
-
-            projectileObject.transform.position = model.Position;
-            projectileObject.GetComponent<Projectile>().StartMoving();
-        }
     }
 
     private void CheckModelOnBecameInvisable()

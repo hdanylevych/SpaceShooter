@@ -10,25 +10,20 @@ public class Projectile : MonoBehaviour
     private Vector2 _direction;
     private float _impluseForce;
 
-    public void Initialize(Vector2 direction, float impulseForce)
-    {
-        _direction = direction;
-        _impluseForce = impulseForce;
-    }
-
-    void Start()
+    public void Initialize()
     {
         _collider = GetComponent<CircleCollider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
         _impluseForce = 200;
-        _direction = Vector2Int.right;
-        
-        StartMoving();
+        _direction = Vector2.right;
     }
 
-    public void StartMoving()
-    {
+    public void StartMoving(Vector2 direction, float impulseForce)
+    { 
+        _direction = direction;
+        _impluseForce = impulseForce;
+
         _rigidbody2D.AddForce(_direction * _impluseForce, ForceMode2D.Force);
     }
 
