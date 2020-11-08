@@ -27,6 +27,8 @@ public class GameInitializer : MonoBehaviour
 
         updateController.Initialize();
 
+        ProjectilePool.Initialize();
+
         Destroy(gameObject);
     }
 }

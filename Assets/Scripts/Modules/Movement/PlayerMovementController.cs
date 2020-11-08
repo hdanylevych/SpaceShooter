@@ -14,11 +14,8 @@ public class PlayerMovementController : IMovementController
 
     public void Update(UnitModel model)
     {
-        var value = _controls.PlayerShip.Up.ReadValue<float>();
-        model.Position.y += value * Time.deltaTime;
-        
-        value = _controls.PlayerShip.Down.ReadValue<float>();
-        model.Position.y -= value * Time.deltaTime;
+        var direction = _controls.PlayerShip.Movement.ReadValue<Vector2>();
+        model.Position += (Vector3)direction * model.MovementSpeed * Time.deltaTime;
     }
 
     ~PlayerMovementController()

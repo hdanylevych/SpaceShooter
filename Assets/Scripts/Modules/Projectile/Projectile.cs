@@ -20,11 +20,21 @@ public class Projectile : MonoBehaviour
     }
 
     public void StartMoving(Vector2 direction, float impulseForce)
-    { 
+    {
         _direction = direction;
         _impluseForce = impulseForce;
 
         _rigidbody2D.AddForce(_direction * _impluseForce, ForceMode2D.Force);
+    }
+
+    private void OnCollisionEnter2D()
+    {
+        ProjectilePool.ReturnProjectile(gameObject);
+    }
+
+    private void OnBecameInvisible()
+    {
+        ProjectilePool.ReturnProjectile(gameObject);
     }
 
     public void StopMoving()

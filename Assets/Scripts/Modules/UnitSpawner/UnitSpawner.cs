@@ -61,20 +61,20 @@ public class UnitSpawner
         var playerViewInstance = GameObject.Instantiate(_unitViewPrefab);
         var playerView = playerViewInstance.GetComponent<UnitView>();
 
-        var unitModel = new UnitModel(_defaultPlayerConfiguration);
-        
+        var model = new UnitModel(_defaultPlayerConfiguration);
+
         foreach (var animationReference in _unitsAnimationReferences.animationReferences)
         {
-            if (animationReference.SkinId == unitModel.SkinId)
+            if (animationReference.SkinId == model.SkinId)
             {
-                GameObject.Instantiate(animationReference.Animation, playerViewInstance.transform);
+                var animationInstantiate = GameObject.Instantiate(animationReference.Animation, playerViewInstance.transform);
+                model.UnitCollider = animationInstantiate.GetComponent<BoxCollider2D>();
                 break;
             }
         }
 
-        playerView.Initialize(unitModel);
-
-        army.Add(unitModel);
+        playerView.Initialize(model);
+        army.Add(model);
         playerViewInstance.transform.parent = _playersViewParent.transform;
     }
 
@@ -95,7 +95,8 @@ public class UnitSpawner
             {
                 if (animationReference.SkinId == model.SkinId)
                 {
-                    GameObject.Instantiate(animationReference.Animation, enemyViewGameObject.transform);
+                    var animationInstantiate = GameObject.Instantiate(animationReference.Animation, enemyViewGameObject.transform);
+                    model.UnitCollider = animationInstantiate.GetComponent<BoxCollider2D>();
                     break;
                 }
             }

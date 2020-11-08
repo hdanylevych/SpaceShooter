@@ -12,6 +12,8 @@ public class UnitModel
     public long AttackDamage => _configuration.AttackDamage;
     public float AttackSpeed => _configuration.AttackSpeed;
     public int SkinId => _configuration.SkinId;
+    public int MovementSpeed => 3;
+    public BoxCollider2D UnitCollider;
 
     public UnitModel(UnitConfiguration config)
     {

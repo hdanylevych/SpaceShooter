@@ -1,29 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShootingController : IShootingController
 {
     private GameControls _playerControls;
+    private Vector3 _bulletSpawnPosition;
 
     public PlayerShootingController()
     {
         _playerControls = new GameControls();
         _playerControls.Enable();
+        _playerControls.PlayerShip.Fire.performed += _ => Shoot();
     }
 
     public void Update(UnitModel model)
     {
-        if (_playerControls.PlayerShip.Fire.ReadValue<float>() > 0f)
-        {
-            var projectilePrefab = Resources.Load<GameObject>("Projectiles/Projectile");
-            var projectileObject = GameObject.Instantiate(projectilePrefab);
+        _bulletSpawnPosition = model.Position;
+    }
 
-            projectileObject.transform.position = model.Position;
-            var projectile = projectileObject.GetComponent<Projectile>();
+    private void Shoot()
+    {
+        var projectileObject = ProjectilePool.GetProjectile();
 
-            projectile.Initialize();
-            projectile.StartMoving(Vector2.right, 200);
-        }
+        projectileObject.SetActive(true);
+        projectileObject.GetComponent<Projectile>().StartMoving(Vector2.right, 200);
+        projectileObject.transform.position = _bulletSpawnPosition + Vector3.right;
     }
 }
