@@ -27,12 +27,7 @@ public class Projectile : MonoBehaviour
         _rigidbody2D.AddForce(_direction * _impluseForce, ForceMode2D.Force);
     }
 
-    private void OnCollisionEnter2D()
-    {
-        ProjectilePool.ReturnProjectile(gameObject);
-    }
-
-    private void OnBecameInvisible()
+    public void ReturnToThePool()
     {
         ProjectilePool.ReturnProjectile(gameObject);
     }

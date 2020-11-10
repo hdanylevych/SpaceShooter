@@ -68,7 +68,6 @@ public class UnitSpawner
             if (animationReference.SkinId == model.SkinId)
             {
                 var animationInstantiate = GameObject.Instantiate(animationReference.Animation, playerViewInstance.transform);
-                model.UnitCollider = animationInstantiate.GetComponent<BoxCollider2D>();
                 break;
             }
         }
@@ -96,7 +95,6 @@ public class UnitSpawner
                 if (animationReference.SkinId == model.SkinId)
                 {
                     var animationInstantiate = GameObject.Instantiate(animationReference.Animation, enemyViewGameObject.transform);
-                    model.UnitCollider = animationInstantiate.GetComponent<BoxCollider2D>();
                     break;
                 }
             }

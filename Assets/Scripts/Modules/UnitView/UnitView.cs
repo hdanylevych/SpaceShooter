@@ -1,16 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitView : MonoBehaviour
 {
     private UnitModel _model;
-
+    private Collider2D _collider;
+    private List<Collider2D> _contacts;
+    
     public UnitModel Model => _model;
+
+    private void Start()
+    {
+        _collider = gameObject.GetComponentInChildren<Collider2D>();
+    }
 
     public void Initialize(UnitModel unitModel)
     {
         _model = unitModel;
+        _contacts = new List<Collider2D>(10);
     }
 
     private void Update()
@@ -18,9 +25,29 @@ public class UnitView : MonoBehaviour
         if (Model.IsDead == true)
         {
             _model = null;
+            Destroy(gameObject);
             // return view to the pool
         }
 
         transform.position = Model.Position;
+
+        CheckCollisionContacts();
+    }
+
+    private void CheckCollisionContacts()
+    {
+        _collider.OverlapCollider(new ContactFilter2D(), _contacts);
+
+        if (_contacts.Count > 0)
+        {
+            foreach (var contact in _contacts)
+            {
+                if (contact.gameObject.TryGetComponent<Projectile>(out Projectile projectile) == true)
+                {
+                    _model.InvokeAttacked();
+                    projectile.ReturnToThePool();
+                }
+            }
+        }
     }
 }

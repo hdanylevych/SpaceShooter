@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class UnitModel
@@ -13,7 +12,8 @@ public class UnitModel
     public float AttackSpeed => _configuration.AttackSpeed;
     public int SkinId => _configuration.SkinId;
     public int MovementSpeed => 3;
-    public BoxCollider2D UnitCollider;
+
+    public event Action<UnitModel> Attacked;
 
     public UnitModel(UnitConfiguration config)
     {
@@ -23,5 +23,10 @@ public class UnitModel
     public void ApplyDamage(int hp)
     {
         _configuration.Hp -= hp;
+    }
+
+    public void InvokeAttacked()
+    {
+        Attacked?.Invoke(this);
     }
 }

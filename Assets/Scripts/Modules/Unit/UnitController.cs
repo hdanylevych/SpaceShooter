@@ -18,6 +18,8 @@ public class UnitController
 
         _playerControls = new GameControls();
         _playerControls.Enable();
+
+        SignUpToAttacked(_army);
     }
 
     public void UpdateMethod()
@@ -31,7 +33,10 @@ public class UnitController
         CheckModelOnBecameInvisable();
 
         if (_army.Count == 0)
+        {
             _army = UnitSpawner.Instance.CreateArmy(30, false);
+            SignUpToAttacked(_army);
+        }
     }
 
     private void CheckModelOnBecameInvisable()
@@ -40,9 +45,23 @@ public class UnitController
         {
             if (_army[i].Position.x < -10)
             {
+                _army[i].Attacked -= OnAttacked;
                 _army[i] = null;
                 _army.RemoveAt(i);
             }
         }
+    }
+
+    private void SignUpToAttacked(List<UnitModel> army)
+    {
+        foreach (var unitModel in army)
+        {
+            unitModel.Attacked += OnAttacked;
+        }
+    }
+
+    private void OnAttacked(UnitModel unitModel)
+    {
+        Debug.Log("Unit Attacked");
     }
 }
