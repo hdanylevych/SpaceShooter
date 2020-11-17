@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IAttacker
 {
+    private long _damage;
     private CircleCollider2D _collider;
     private Rigidbody2D _rigidbody2D;
     private Vector2 _direction;
     private float _impluseForce;
+
+    public long Damage => _damage;
 
     public void Initialize()
     {
@@ -19,8 +22,9 @@ public class Projectile : MonoBehaviour
         _direction = Vector2.right;
     }
 
-    public void StartMoving(Vector2 direction, float impulseForce)
+    public void SetNewConfigurations(Vector2 direction, float impulseForce, long damage)
     {
+        _damage = damage;
         _direction = direction;
         _impluseForce = impulseForce;
 

@@ -21,5 +21,7 @@ public class UpdateObject : MonoBehaviour
     {
         _playerController.UpdateMethod();
         _enemyController.UpdateMethod();
+
+
     }
 }

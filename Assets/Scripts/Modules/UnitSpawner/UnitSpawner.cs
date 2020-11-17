@@ -6,18 +6,15 @@ public class UnitSpawner
     private static UnitSpawner instance;
 
     private const string UnitViewGameObjectPath = "View/UnitView";
-    private const string EnemyConfigurationObjectPath = "Configurations/Enemies/";
-    private const string PlayerConfigurationObjectPath = "Configurations/Player/";
+    private const string UnitConfigurationObjectPath = "Configurations/Units/UnitDatabase";
     private const string UnitsAnimationReferencesPath = "Configurations/UnitsAnimationReferences/UnitsAnimationReferences";
 
     private GameObject _unitViewPrefab;
-
     private GameObject _playersViewParent = new GameObject("Player's View");
     private GameObject _enemyViewParent = new GameObject("Enemy's View");
     
-    private UnitConfiguration _defaultEnemyConfiguration;
-    private UnitConfiguration _defaultPlayerConfiguration;
     private UnitsAnimationReferences _unitsAnimationReferences;
+    private UnitDatabase _unitDatabase;
 
     public static UnitSpawner Instance
     {
@@ -34,9 +31,8 @@ public class UnitSpawner
     {
         _unitViewPrefab = Resources.Load<GameObject>(UnitViewGameObjectPath);
 
-        _defaultEnemyConfiguration = Resources.Load<UnitConfiguration>(EnemyConfigurationObjectPath + "Default");
-        _defaultPlayerConfiguration = Resources.Load<UnitConfiguration>(PlayerConfigurationObjectPath + "Base");
         _unitsAnimationReferences = Resources.Load<UnitsAnimationReferences>(UnitsAnimationReferencesPath);
+        _unitDatabase = Resources.Load<UnitDatabase>(UnitConfigurationObjectPath);
     }
 
     public List<UnitModel> CreateArmy(int armySize, bool isPlayer)
@@ -61,7 +57,7 @@ public class UnitSpawner
         var playerViewInstance = GameObject.Instantiate(_unitViewPrefab);
         var playerView = playerViewInstance.GetComponent<UnitView>();
 
-        var model = new UnitModel(_defaultPlayerConfiguration);
+        var model = new UnitModel(_unitDatabase.UnitConfigurations[0]);
 
         foreach (var animationReference in _unitsAnimationReferences.animationReferences)
         {
@@ -81,7 +77,7 @@ public class UnitSpawner
     {
         for (int i = 0; i < armySize; i++)
         {
-            var model = new UnitModel(_defaultEnemyConfiguration);
+            var model = new UnitModel(_unitDatabase.UnitConfigurations[1]);
             var enemyViewGameObject = GameObject.Instantiate(_unitViewPrefab); // EnemyUnitPool.GetEnemy()
             
             model.Position.y = Random.Range(-5, 5);

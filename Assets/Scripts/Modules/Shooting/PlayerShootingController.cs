@@ -12,20 +12,26 @@ public class PlayerShootingController : IShootingController
     {
         _playerControls = new GameControls();
         _playerControls.Enable();
-        _playerControls.PlayerShip.Fire.performed += _ => Shoot();
     }
 
     public void Update(UnitModel model)
     {
         _bulletSpawnPosition = model.Position;
+        
+        if (_playerControls.PlayerShip.Fire.ReadValue<float>() != 0f)
+        {
+            Shoot(model);
+        }
     }
 
-    private void Shoot()
+    private void Shoot(UnitModel model)
     {
         var projectileObject = ProjectilePool.GetProjectile();
 
         projectileObject.SetActive(true);
-        projectileObject.GetComponent<Projectile>().StartMoving(Vector2.right, 200);
         projectileObject.transform.position = _bulletSpawnPosition + Vector3.right;
+
+        var projectile = projectileObject.GetComponent<Projectile>();
+        projectile.SetNewConfigurations(Vector2.right, 200, model.AttackDamage);
     }
 }

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f42703689287694f9c968f121de43ee, type: 3}
+  m_Name: UnitDatabase
+  m_EditorClassIdentifier: 
+  UnitConfigurations:
+  - Id: 0
+    SkinId: 1
+    Name: Player
+    Hp: 100
+    MovementSpeed: 5
+    AttackDamage: 1
+    AttackSpeed: 3
+  - Id: 1
+    SkinId: 4
+    Name: Default
+    Hp: 5
+    MovementSpeed: 5
+    AttackDamage: 1
+    AttackSpeed: 1
+  - Id: 2
+    SkinId: 3
+    Name: Craser
+    Hp: 5000
+    MovementSpeed: 2
+    AttackDamage: 1000
+    AttackSpeed: 2

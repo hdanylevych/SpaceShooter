@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using System;
 
-[CreateAssetMenu(fileName = "New UnitConfiguration", menuName = "Scriptable Data/UnitConfig")]
-public class UnitConfiguration : ScriptableObject
+[Serializable]
+public struct UnitConfiguration
 {
     public int Id;
     public int SkinId;
