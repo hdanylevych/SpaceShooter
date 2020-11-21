@@ -62,6 +62,6 @@ public class UnitController
 
     private void OnAttacked(UnitModel unitModel)
     {
-        Debug.Log("Unit Attacked");
+        //Debug.Log("Unit Attacked");
     }
 }
