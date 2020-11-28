@@ -18,17 +18,11 @@ public class UnitView : MonoBehaviour
     {
         _model = unitModel;
         _contacts = new List<Collider2D>(10);
+        _model.OnDeath += OnUnitDeath;
     }
 
     private void Update()
     {
-        if (Model.IsDead == true)
-        {
-            _model = null;
-            Destroy(gameObject);
-            // return view to the pool
-        }
-
         transform.position = Model.Position;
 
         CheckCollisionContacts();
@@ -44,10 +38,17 @@ public class UnitView : MonoBehaviour
             {
                 if (contact.gameObject.TryGetComponent<Projectile>(out Projectile projectile) == true)
                 {
-                    _model.InvokeAttacked();
+                    _model.InvokeAttacked(projectile);
                     projectile.ReturnToThePool();
                 }
             }
         }
+    }
+
+    private void OnUnitDeath(UnitModel model)
+    {
+        _model.OnDeath -= OnUnitDeath;
+
+        Destroy(gameObject);
     }
 }

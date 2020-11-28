@@ -24,6 +24,7 @@ public class Projectile : MonoBehaviour, IAttacker
 
     public void SetNewConfigurations(Vector2 direction, float impulseForce, long damage)
     {
+        _rigidbody2D.isKinematic = false;
         _damage = damage;
         _direction = direction;
         _impluseForce = impulseForce;
@@ -31,13 +32,22 @@ public class Projectile : MonoBehaviour, IAttacker
         _rigidbody2D.AddForce(_direction * _impluseForce, ForceMode2D.Force);
     }
 
+    private void OnBecameInvisible()
+    {
+        ReturnToThePool();
+    }
+
     public void ReturnToThePool()
     {
+        StopMoving();
         ProjectilePool.ReturnProjectile(gameObject);
     }
 
     public void StopMoving()
     {
+        _rigidbody2D.isKinematic = true;
         _rigidbody2D.velocity = Vector2.zero;
+        _rigidbody2D.angularVelocity = 0f;
+        _rigidbody2D.angularDrag = 0f;
     }
 }

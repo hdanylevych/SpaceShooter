@@ -46,7 +46,6 @@ public static class ProjectilePool
 
     public static void ReturnProjectile(GameObject projectile)
     {
-        projectile.GetComponent<Projectile>().StopMoving();
         projectile.SetActive(false);
         _pool.Add(projectile);
     }

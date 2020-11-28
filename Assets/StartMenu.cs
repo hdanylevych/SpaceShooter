@@ -1,14 +1,12 @@
-﻿using System.ComponentModel;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityWeld.Binding;
 
 [Binding]
-public class StartMenu : MonoBehaviour, INotifyPropertyChanged
+public class StartMenu : CanvasMV
 {
     private string _startButtonText;
 
     [SerializeField] private Sprite _startButtonIcon;
-
 
     [Binding]
     public Sprite StartButtonIcon
@@ -22,7 +20,7 @@ public class StartMenu : MonoBehaviour, INotifyPropertyChanged
 
             this._startButtonIcon = value;
 
-            OnPropertyChanged("StartButtonIcon");
+            OnPropertyChanged();
         }
     }
 
@@ -38,7 +36,7 @@ public class StartMenu : MonoBehaviour, INotifyPropertyChanged
 
             this._startButtonText = value;
 
-            OnPropertyChanged("StartButtonText");
+            OnPropertyChanged();
         }
     }
 
@@ -48,15 +46,8 @@ public class StartMenu : MonoBehaviour, INotifyPropertyChanged
         Debug.Log("Start Clicked!");
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
     private void Start()
     {
         StartButtonText = "Start The Battle";
-    }
-
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

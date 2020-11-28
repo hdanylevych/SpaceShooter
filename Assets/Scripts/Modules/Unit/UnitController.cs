@@ -46,6 +46,7 @@ public class UnitController
             if (_army[i].Position.x < -10)
             {
                 _army[i].Attacked -= OnAttacked;
+                _army[i].DeleteModel();
                 _army[i] = null;
                 _army.RemoveAt(i);
             }
@@ -57,11 +58,19 @@ public class UnitController
         foreach (var unitModel in army)
         {
             unitModel.Attacked += OnAttacked;
+            unitModel.OnDeath += OnModelDeath;
         }
     }
 
-    private void OnAttacked(UnitModel unitModel)
+    private void OnAttacked(UnitModel unitModel, IAttacker attacker)
     {
-        //Debug.Log("Unit Attacked");
+        Debug.Log("Unit Attacked");
+
+        unitModel.ApplyDamage(attacker.Damage);
+    }
+
+    private void OnModelDeath(UnitModel model)
+    {
+        _army.Remove(model);
     }
 }
