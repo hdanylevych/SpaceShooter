@@ -47,8 +47,6 @@ public class UnitController
             {
                 _army[i].Attacked -= OnAttacked;
                 _army[i].DeleteModel();
-                _army[i] = null;
-                _army.RemoveAt(i);
             }
         }
     }
@@ -73,4 +71,4 @@ public class UnitController
     {
         _army.Remove(model);
     }
-}
+} 

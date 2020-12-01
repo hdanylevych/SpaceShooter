@@ -32,6 +32,7 @@ public class UnitSpawner
         _unitViewPrefab = Resources.Load<GameObject>(UnitViewGameObjectPath);
 
         _unitsAnimationReferences = Resources.Load<UnitsAnimationReferences>(UnitsAnimationReferencesPath);
+
         _unitDatabase = Resources.Load<UnitDatabase>(UnitConfigurationObjectPath);
     }
 

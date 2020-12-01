@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4031376946589263061}
   - component: {fileID: -1359678523576000621}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: ProjectileView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 8888f82cb470749e98c3456da9c384c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61032a2a41cc84e01b717bb18af4a079, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &-4031376946589263061
 CircleCollider2D:
   m_ObjectHideFlags: 0

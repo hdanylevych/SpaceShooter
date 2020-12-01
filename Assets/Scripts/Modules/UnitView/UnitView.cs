@@ -36,11 +36,10 @@ public class UnitView : MonoBehaviour
         {
             foreach (var contact in _contacts)
             {
-                if (contact.gameObject.TryGetComponent<Projectile>(out Projectile projectile) == true)
-                {
-                    _model.InvokeAttacked(projectile);
-                    projectile.ReturnToThePool();
-                }
+//                if (contact.gameObject.TryGetComponent<Projectile>(out Projectile projectile) == true)
+  //              {
+      //              _model.InvokeAttacked(projectile);
+    //            }
             }
         }
     }

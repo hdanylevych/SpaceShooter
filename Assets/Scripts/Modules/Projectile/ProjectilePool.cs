@@ -53,9 +53,7 @@ public static class ProjectilePool
     private static GameObject GetNewProjectile()
     {
         var projectileObject = GameObject.Instantiate(_projectilePrefab, _parentGameObject.transform);
-        var projectile = projectileObject.GetComponent<Projectile>();
 
-        projectile.Initialize();
         projectileObject.SetActive(false);
 
         return projectileObject;

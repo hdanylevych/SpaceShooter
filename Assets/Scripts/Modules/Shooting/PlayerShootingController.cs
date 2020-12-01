@@ -32,6 +32,6 @@ public class PlayerShootingController : IShootingController
         projectileObject.transform.position = _bulletSpawnPosition + Vector3.right;
 
         var projectile = projectileObject.GetComponent<Projectile>();
-        projectile.SetNewConfigurations(Vector2.right, 200, model.AttackDamage);
+        //projectile.SetNewConfigurations(Vector2.right, 200, model.AttackDamage);
     }
 }
