@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class Projectile
 {
-    private float _speed;
-    private Vector3 _direction;
-    private Vector3 _position;
+    protected float _speed;
+    protected Vector3 _direction;
+    protected Vector3 _position;
 
+    public bool IsDead { get; set; }
     public Vector3 Position => _position;
-
-    public void Initialize(Vector3 direction, Vector3 position, float speed)
-    {
-        _direction = direction;
-        _speed = speed;
-        _position = position;
-    }
 
     public virtual void Update()
     {
+        if (_position.x > 12 || _position.x < -12)
+        {
+            IsDead = true;
+        }
+        
         _position += _direction * (_speed * Time.deltaTime);
     }
 }

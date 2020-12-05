@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1098169939281826661}
   - component: {fileID: 739668188401380750}
   - component: {fileID: 1805596247311858529}
-  - component: {fileID: -4031376946589263061}
   - component: {fileID: -1359678523576000621}
+  - component: {fileID: 1783684940025438370}
   m_Layer: 0
   m_Name: ProjectileView
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 61032a2a41cc84e01b717bb18af4a079, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8888f82cb470749e98c3456da9c384c3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,22 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &-4031376946589263061
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2593768108071149415}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0355732, y: 0.024456501}
-  serializedVersion: 2
-  m_Radius: 0.048596635
 --- !u!114 &-1359678523576000621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +118,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2690208cf629643b9fec4d257e43b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &1783684940025438370
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2593768108071149415}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.035116993, y: 0.022911012}
+  serializedVersion: 2
+  m_Radius: 0.045333512

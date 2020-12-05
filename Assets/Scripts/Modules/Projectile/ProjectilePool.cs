@@ -15,7 +15,7 @@ public static class ProjectilePool
         if (Initialized == true)
             return;
 
-        _projectilePrefab = Resources.Load<GameObject>("Projectiles/Projectile");
+        _projectilePrefab = Resources.Load<GameObject>("Projectiles/ProjectileView");
         _parentGameObject = new GameObject("Projectiles");
         
         GameObject.DontDestroyOnLoad(_parentGameObject);

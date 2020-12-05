@@ -36,10 +36,15 @@ public class UnitView : MonoBehaviour
         {
             foreach (var contact in _contacts)
             {
-//                if (contact.gameObject.TryGetComponent<Projectile>(out Projectile projectile) == true)
-  //              {
-      //              _model.InvokeAttacked(projectile);
-    //            }
+                // TODO: create interaction controller
+                if (contact.gameObject.TryGetComponent<ProjectileView>(out ProjectileView projectileView) == true)
+                {
+                    if (projectileView.Projectile is Bullet bullet)
+                    {
+                        _model.InvokeAttacked(bullet);
+                        bullet.IsDead = true;
+                    }
+                }
             }
         }
     }

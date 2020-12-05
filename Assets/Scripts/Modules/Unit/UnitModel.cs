@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class UnitModel
 {
+    public Vector3 Position = new Vector3(-3, 0, 0);
+
     private long _health;
     private UnitConfiguration _configuration;
-
-    public Vector3 Position = new Vector3(-3, 0, 0);
+    private float _attackCooldown;
 
     public long Health
     {
@@ -15,6 +16,16 @@ public class UnitModel
         private set
         {
             _health = value;
+        }
+    }
+
+    public float AttackCooldown
+    {
+        get => _attackCooldown;
+
+        set
+        {
+            _attackCooldown = value;
         }
     }
 
@@ -38,6 +49,7 @@ public class UnitModel
     {
         Health -= damage;
 
+        Debug.Log("Health remained: " + Health);
         if (IsDead)
         {
             OnDeath?.Invoke(this);

@@ -19,7 +19,7 @@ MonoBehaviour:
     Hp: 100
     MovementSpeed: 5
     AttackDamage: 1
-    AttackSpeed: 3
+    AttackSpeed: 0.05
   - Id: 1
     SkinId: 4
     Name: Default

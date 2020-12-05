@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class ProjectileView : MonoBehaviour
 {
     private Projectile _projectile;
-    private CircleCollider2D _collider;
+    private Collider2D _collider;
     private Rigidbody2D _rigidbody2D;
+
+    public Projectile Projectile => this._projectile;
 
     public void Start()
     {
-        _collider = GetComponent<CircleCollider2D>();
+        _collider = gameObject.GetComponent<Collider2D>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -20,13 +22,18 @@ public class ProjectileView : MonoBehaviour
         _projectile = projectile;
     }
 
-    private void Update()
+    public void DestroyObject()
     {
-        transform.position = _projectile.Position;
+        Destroy(gameObject);
     }
 
-    private void OnBecameInvisible()
+    private void Update()
     {
-        ProjectilePool.ReturnProjectile(gameObject);
+        if (_projectile.IsDead)
+        {
+            DestroyObject();
+        }
+
+        transform.position = _projectile.Position;
     }
 }

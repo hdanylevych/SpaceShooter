@@ -42,9 +42,9 @@ public class ProjectileController
         }
     }
 
-    private void RemoveProjectile(Projectile projectile)
+    public void RemoveProjectile(Projectile projectile)
     {
-        if (this._projectiles.Contains(projectile) == true)
+        if (_projectiles.Contains(projectile) == true)
         {
             _projectiles.Remove(projectile);
         }
