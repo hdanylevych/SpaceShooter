@@ -8,6 +8,7 @@ public class ProjectileView : MonoBehaviour
     private Projectile _projectile;
     private Collider2D _collider;
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
 
     public Projectile Projectile => this._projectile;
 
@@ -20,6 +21,9 @@ public class ProjectileView : MonoBehaviour
     public void Initialize(Projectile projectile)
     {
         _projectile = projectile;
+
+        _animator = GetComponent<Animator>();
+        _animator.SetBool("PlayerProjectile", true);
     }
 
     public void DestroyObject()
@@ -29,11 +33,18 @@ public class ProjectileView : MonoBehaviour
 
     private void Update()
     {
-        if (_projectile.IsDead)
+        if (_projectile.IsDead && this._collider.enabled)
         {
+            // TODO: spawn explosion object
             DestroyObject();
         }
 
         transform.position = _projectile.Position;
+    }
+
+    public void SetPlayerBulletFlyAnimation()
+    {
+        _animator.SetBool("PlayerProjectile", false);
+        this._animator.SetBool("PlayerBulletFlyAnimation", true);
     }
 }

@@ -13,6 +13,9 @@ public class Projectile
 
     public virtual void Update()
     {
+        if (IsDead == true)
+            return;
+
         if (_position.x > 12 || _position.x < -12)
         {
             IsDead = true;
