@@ -45,6 +45,13 @@ public class UnitView : MonoBehaviour
                         bullet.IsDead = true;
                     }
                 }
+
+                var view = contact.gameObject.GetComponentInParent<UnitView>();
+
+                if (view != null)
+                {
+                    Model.ApplyDamage(10);
+                }
             }
         }
     }
@@ -52,7 +59,12 @@ public class UnitView : MonoBehaviour
     private void OnUnitDeath(UnitModel model)
     {
         _model.OnDeath -= OnUnitDeath;
-
+        
+        // spawn explosion effect.
+        // effect.position = Model.position;
+        // effect.SetActive(true);
+        // effect.Play();
+        
         Destroy(gameObject);
     }
 }
