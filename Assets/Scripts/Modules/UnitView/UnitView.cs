@@ -36,22 +36,7 @@ public class UnitView : MonoBehaviour
         {
             foreach (var contact in _contacts)
             {
-                // TODO: create interaction controller
-                if (contact.gameObject.TryGetComponent<ProjectileView>(out ProjectileView projectileView) == true)
-                {
-                    if (projectileView.Projectile is Bullet bullet)
-                    {
-                        _model.InvokeAttacked(bullet);
-                        bullet.IsDead = true;
-                    }
-                }
-
-                var view = contact.gameObject.GetComponentInParent<UnitView>();
-
-                if (view != null)
-                {
-                    Model.ApplyDamage(10);
-                }
+                InteractionController.Instance.ProcessInteraction(Model, contact);
             }
         }
     }
@@ -59,11 +44,6 @@ public class UnitView : MonoBehaviour
     private void OnUnitDeath(UnitModel model)
     {
         _model.OnDeath -= OnUnitDeath;
-        
-        // spawn explosion effect.
-        // effect.position = Model.position;
-        // effect.SetActive(true);
-        // effect.Play();
         
         Destroy(gameObject);
     }

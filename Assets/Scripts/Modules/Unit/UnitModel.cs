@@ -6,6 +6,7 @@ public class UnitModel
     public Vector3 Position = new Vector3(-3, 0, 0);
 
     private long _health;
+    private long _shield;
     private UnitConfiguration _configuration;
     private float _attackCooldown;
 
