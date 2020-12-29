@@ -62,8 +62,6 @@ public class UnitController
 
     private void OnAttacked(UnitModel unitModel, IAttacker attacker)
     {
-        Debug.Log("Unit Attacked");
-
         unitModel.ApplyDamage(attacker.Damage);
     }
 

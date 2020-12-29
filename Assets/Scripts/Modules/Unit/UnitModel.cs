@@ -50,7 +50,6 @@ public class UnitModel
     {
         Health -= damage;
 
-        Debug.Log("Health remained: " + Health);
         if (IsDead)
         {
             OnDeath?.Invoke(this);

@@ -44,7 +44,10 @@ public class UnitView : MonoBehaviour
     private void OnUnitDeath(UnitModel model)
     {
         _model.OnDeath -= OnUnitDeath;
-        
+
+        var explosionFX = FXProvider.Instance.GetFXInstance(FXType.Explosion);
+        explosionFX.transform.position = gameObject.transform.position;
+
         Destroy(gameObject);
     }
 }
