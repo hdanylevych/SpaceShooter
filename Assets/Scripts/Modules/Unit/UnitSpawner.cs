@@ -6,7 +6,7 @@ public class UnitSpawner
     private static UnitSpawner instance;
 
     private const string UnitViewGameObjectPath = "View/UnitView";
-    private const string UnitConfigurationObjectPath = "Configurations/Units/UnitDatabase";
+    private const string UnitConfigurationObjectPath = "Configurations/UnitDatabase/UnitDatabase";
     private const string UnitsAnimationReferencesPath = "Configurations/UnitsAnimationReferences/UnitsAnimationReferences";
 
     private GameObject _unitViewPrefab;

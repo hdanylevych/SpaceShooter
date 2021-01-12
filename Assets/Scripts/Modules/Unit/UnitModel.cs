@@ -20,6 +20,16 @@ public class UnitModel
         }
     }
 
+    public long Shield
+    {
+        get => _shield;
+
+        private set
+        {
+            _shield = value;
+        }
+    }
+
     public float AttackCooldown
     {
         get => _attackCooldown;
@@ -31,6 +41,7 @@ public class UnitModel
     }
 
     public int MaxHealth => _configuration.Hp;
+    public int MaxShield => _configuration.Shield;
     public bool IsDead => Health <= 0;
     public long AttackDamage => _configuration.AttackDamage;
     public float AttackSpeed => _configuration.AttackSpeed;

@@ -16,16 +16,16 @@ MonoBehaviour:
   - Id: 0
     SkinId: 1
     Name: Player
-    Hp: 100
-    Shield: 0
+    Hp: 300
+    Shield: 100
     MovementSpeed: 5
     AttackDamage: 5
     AttackSpeed: 0.05
   - Id: 1
     SkinId: 4
     Name: Default
-    Hp: 100
-    Shield: 0
+    Hp: 300
+    Shield: 100
     MovementSpeed: 5
     AttackDamage: 1
     AttackSpeed: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
     SkinId: 3
     Name: Craser
     Hp: 5000
-    Shield: 0
+    Shield: 1000
     MovementSpeed: 2
     AttackDamage: 1000
     AttackSpeed: 2
