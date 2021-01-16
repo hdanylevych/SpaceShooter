@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class UnitController
 {
-    private GameControls _playerControls;
     private List<UnitModel> _army;
     private IMovementController _movementController;
     private IShootingController _shootingController;
@@ -16,8 +12,6 @@ public class UnitController
         _movementController = movementController;
         _shootingController = shootingController;
 
-        _playerControls = new GameControls();
-        _playerControls.Enable();
 
         SignUpToAttacked(_army);
     }
@@ -34,7 +28,7 @@ public class UnitController
 
         if (_army.Count == 0)
         {
-            _army = UnitSpawner.Instance.CreateArmy(30, false);
+            _army = UnitSpawner.Instance.CreateArmy(10, false);
             SignUpToAttacked(_army);
         }
     }

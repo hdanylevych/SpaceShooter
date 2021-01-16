@@ -31,6 +31,7 @@ public class InteractionController
             {
                 model.InvokeAttacked(bullet);
                 bullet.IsDead = true;
+                return;
             }
         }
 

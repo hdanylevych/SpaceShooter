@@ -1,29 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class ProjectileView : MonoBehaviour
 {
     private Projectile _projectile;
     private Collider2D _collider;
-    private Rigidbody2D _rigidbody2D;
+    private SpriteRenderer _spriteRenderer;
     private Animator _animator;
 
-    public Projectile Projectile => this._projectile;
+    public Projectile Projectile => _projectile;
 
     public void Start()
     {
         _collider = gameObject.GetComponent<Collider2D>();
-        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     public void Initialize(Projectile projectile)
     {
         _projectile = projectile;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        _animator = GetComponent<Animator>();
-        _animator.SetBool("PlayerProjectile", true);
+        if (projectile is Bullet)
+        {
+            _animator = GetComponent<Animator>();
+            _animator.SetBool("PlayerProjectile", true);
+        }
+        else if (projectile is PowerUp powerUp)
+        {
+            _animator = GetComponent<Animator>();
+            _animator.enabled = false;
+            _spriteRenderer.sprite = Resources.Load<Sprite>("Icons/PowerUps/" + powerUp.Type);
+        }
     }
 
     public void DestroyObject()
@@ -33,7 +40,7 @@ public class ProjectileView : MonoBehaviour
 
     private void Update()
     {
-        if (_projectile.IsDead && this._collider.enabled)
+        if (_projectile.IsDead && _collider.enabled)
         {
             // TODO: spawn explosion object
             DestroyObject();
@@ -45,6 +52,6 @@ public class ProjectileView : MonoBehaviour
     public void SetPlayerBulletFlyAnimation()
     {
         _animator.SetBool("PlayerProjectile", false);
-        this._animator.SetBool("PlayerBulletFlyAnimation", true);
+        _animator.SetBool("PlayerBulletFlyAnimation", true);
     }
 }

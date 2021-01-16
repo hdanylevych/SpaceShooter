@@ -24,14 +24,14 @@ MonoBehaviour:
   - Id: 1
     SkinId: 4
     Name: Default
-    Hp: 300
+    Hp: 100
     Shield: 100
     MovementSpeed: 5
     AttackDamage: 1
     AttackSpeed: 1
   - Id: 2
     SkinId: 3
-    Name: Craser
+    Name: Creaser
     Hp: 5000
     Shield: 1000
     MovementSpeed: 2
