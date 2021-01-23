@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InteractionController
 {
@@ -19,10 +17,6 @@ public class InteractionController
         }
     }
 
-    private InteractionController()
-    {
-    }
-
     public void ProcessInteraction(UnitModel model, Collider2D contact)
     {
         if (contact.gameObject.TryGetComponent<ProjectileView>(out ProjectileView projectileView) == true)
@@ -33,12 +27,18 @@ public class InteractionController
                 bullet.IsDead = true;
                 return;
             }
+
+            if (projectileView.Projectile is PowerUp powerUp)
+            {
+                PowerUpModifier.Instance.ApplyPowerUpToModel(model, powerUp);
+            }
         }
 
         var view = contact.gameObject.GetComponentInParent<UnitView>();
 
         if (view != null)
         {
+            // UnitHealthApplicator.ApplyHealthDelta(10);
             model.ApplyDamage(10);
         }
     }

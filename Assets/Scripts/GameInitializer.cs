@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameInitializer : MonoBehaviour
 {
@@ -9,6 +7,7 @@ public class GameInitializer : MonoBehaviour
     private const string BackgroundGameObjectPath = "Backgrounds/StarsTexture";
     
     private GameObject _playersViewParent;
+
     // Start is called before the first frame update
     void Awake()
     {
